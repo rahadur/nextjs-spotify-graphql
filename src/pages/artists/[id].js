@@ -5,12 +5,13 @@ import { LoadArtists } from "../../graphql/queries";
 import Head from "next/head";
 import AlbumList from "../../components/albumList";
 
-const Artist = () => {
+const ArtistPage = () => {
   const routes = useRouter();
   const { id } = routes.query;
-  const { data, loading } = useQuery(LoadArtists);
+  const { data, loading, error } = useQuery(LoadArtists);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return  <div>Filed to to fetch data...</div>
 
   const artiest = data.queryArtists.find((artist) => artist.id === id);
 
@@ -30,4 +31,4 @@ const Artist = () => {
   );
 };
 
-export default Artist;
+export default ArtistPage;

@@ -6,9 +6,10 @@ import { LoadArtists } from "../graphql/queries";
 import ArtistsList from "../components/artistsList";
 
 export default function Home() {
-  const { loading, data } = useQuery(LoadArtists);
+  const { loading, error, data } = useQuery(LoadArtists);
 
   if (loading) return <div>Loading...</div>;
+  if (error) return  <div>Filed to to fetch data...</div>
 
   return (
     <>
@@ -21,8 +22,8 @@ export default function Home() {
       <main>
           <Image src={'/spotify-banner.png'} alt={'Spotify Banner'}
           width={800} height={300} />
-          <div className="mt-4">
-              { data && <ArtistsList area-role="list"  artists={data.queryArtists} />}
+          <div className="mt-4" data-testid="artists-list">
+              { data && <ArtistsList  artists={data.queryArtists} />}
           </div>
       </main>
     </>
