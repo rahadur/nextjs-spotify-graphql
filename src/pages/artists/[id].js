@@ -25,7 +25,7 @@ const ArtistPage = () => {
 
       <main>
         <h1 data-testid="header-title">{artiest.name} Albums</h1>
-        <div className="mt-3" data-testid="album-list">
+        <div className="mt-3" data-testid="artist-album-list">
           {artiest && <AlbumList  albums={artiest.albums} />}
         </div>
       </main>

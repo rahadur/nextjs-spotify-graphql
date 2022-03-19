@@ -1,10 +1,8 @@
 import { act, render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import { errorMockup, mocks } from '../../test-utils/mock-data'
+import { wait } from '../../test-utils/waiter'
 import Home from "../../src/pages";
-
-
-const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration))
 
 
 describe("home page", () => {
@@ -31,7 +29,7 @@ describe("home page", () => {
 
     await act(() => wait(0))
 
-    const element = screen.getByText(/Filed to to fetch data.../, { exact: true})
+    const element = screen.getByText("Filed to to fetch data...", { exact: true})
 
     expect(element).toHaveTextContent('Filed to to fetch data...')
   });

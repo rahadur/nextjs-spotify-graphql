@@ -1,9 +1,8 @@
 import { act, render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import { errorMockup, mocks } from '../../test-utils/mock-data'
+import { wait } from '../../test-utils/waiter'
 import ArtistPage from '../../src/pages/artists/[id]'
-
-const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration))
 
 let useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
@@ -16,7 +15,7 @@ describe('article page', () => {
     })
 
     afterAll(() => {
-        useRouter.mockRestore()
+        useRouter.mockReset()
         useRouter = null
     })
 
@@ -72,7 +71,7 @@ describe('article page', () => {
         );
 
         await act(() => wait(0))
-        const element = screen.getByTestId("album-list", { exact: true})
+        const element = screen.getByTestId("artist-album-list", { exact: true})
 
         expect(element).toBeInTheDocument()
     });
