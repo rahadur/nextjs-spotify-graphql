@@ -1,9 +1,7 @@
 import { act, render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import { errorMockup, mocks } from '../../test-utils/mock-data'
 import Home from "../../src/pages";
-import { errorMockup, mocks } from '../../mock-data'
-
-
 
 
 const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration))
@@ -24,7 +22,7 @@ describe("home page", () => {
 
 
 
-  it("should displays a error message when filed to load data", async () => {
+  it("should displays a error message when failed to load data", async () => {
     render(
         <MockedProvider mocks={[errorMockup]} addTypename={false}>
           <Home />
@@ -33,7 +31,7 @@ describe("home page", () => {
 
     await act(() => wait(0))
 
-    const element = screen.getByText("Filed to to fetch data...", { exact: true})
+    const element = screen.getByText(/Filed to to fetch data.../, { exact: true})
 
     expect(element).toHaveTextContent('Filed to to fetch data...')
   });

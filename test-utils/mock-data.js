@@ -1,4 +1,4 @@
-import { LoadArtists } from './src/graphql/queries'
+import { LoadArtists } from '../src/graphql/queries'
 
 export const mocks = {
     request: {

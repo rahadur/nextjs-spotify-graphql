@@ -10,8 +10,8 @@ const ArtistPage = () => {
   const { id } = routes.query;
   const { data, loading, error } = useQuery(LoadArtists);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return  <div>Filed to to fetch data...</div>
+    if (loading) return <div>Loading...</div>;
+    if (error) return  <div>Failed to to fetch data...</div>;
 
   const artiest = data.queryArtists.find((artist) => artist.id === id);
 
@@ -24,8 +24,10 @@ const ArtistPage = () => {
       </Head>
 
       <main>
-        <h1>{artiest.name} Albums</h1>
-        {artiest && <AlbumList albums={artiest.albums} />}
+        <h1 data-testid="header-title">{artiest.name} Albums</h1>
+        <div className="mt-3" data-testid="album-list">
+          {artiest && <AlbumList  albums={artiest.albums} />}
+        </div>
       </main>
     </div>
   );
