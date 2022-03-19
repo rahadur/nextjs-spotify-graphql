@@ -21,8 +21,8 @@ export default function Home() {
       <main>
           <Image src={'/spotify-banner.png'} alt={'Spotify Banner'}
           width={800} height={300} />
-          <div className="mt-4" role="list">
-              { data && <ArtistsList  artists={data.queryArtists} />}
+          <div className="mt-4">
+              { data && <ArtistsList area-role="list"  artists={data.queryArtists} />}
           </div>
       </main>
     </>
