@@ -5,12 +5,13 @@ import { LoadArtists } from "../../graphql/queries";
 import Head from "next/head";
 import AlbumList from "../../components/albumList";
 
-const Artist = () => {
+const ArtistPage = () => {
   const routes = useRouter();
   const { id } = routes.query;
-  const { data, loading } = useQuery(LoadArtists);
+  const { data, loading, error } = useQuery(LoadArtists);
 
-  if (loading) return <p>Loading...</p>;
+    if (loading) return <div>Loading...</div>;
+    if (error) return  <div>Failed to to fetch data...</div>;
 
   const artiest = data.queryArtists.find((artist) => artist.id === id);
 
@@ -23,11 +24,13 @@ const Artist = () => {
       </Head>
 
       <main>
-        <h1>{artiest.name} Albums</h1>
-        {artiest && <AlbumList albums={artiest.albums} />}
+        <h1 data-testid="header-title">{artiest.name} Albums</h1>
+        <div className="mt-3" data-testid="artist-album-list">
+          {artiest && <AlbumList  albums={artiest.albums} />}
+        </div>
       </main>
     </div>
   );
 };
 
-export default Artist;
+export default ArtistPage;

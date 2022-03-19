@@ -1,13 +1,13 @@
 import ArtistItem from "./artistItem";
 
 const ArtistsList = ({ artists }) => {
-  if (!artists || !artists.length) return <div>No artist found. </div>;
+  if (!artists || !artists.length) return <div>No artist found.</div>;
   return (
     <div>
       <h1>Artists</h1>
-      <div className="row mt-4">
+      <div className="row mt-4" data-testid="artist-list">
         {artists.map((artist) => (
-          <ArtistItem key={artist.id} artist={artist} />
+          <ArtistItem  key={artist.id} artist={artist} />
         ))}
       </div>
     </div>

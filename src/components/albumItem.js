@@ -6,7 +6,7 @@ const AlbumItem = ({ album }) => {
       <div className="card" role="card">
         <AppImage src={album.image} alt={album.name} width='200' height='140' />
         <div className="card-body">
-          <p className="card-title">{album.name}</p>
+          <p className="card-title" data-testid="album-name">{album.name}</p>
         </div>
       </div>
     </div>
